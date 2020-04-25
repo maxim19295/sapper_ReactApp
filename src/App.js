@@ -1,16 +1,13 @@
 import React from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Content from './components/Content/Content';
 
 function App() {
   return (
     <div className="App">
-      <div>
-        Header
-      </div>
-      <div>
-        Content
-        (it will contains PlayField, settings of PlayField and history of last games)
-      </div>
+      <Header/>
+      <Content/>
     </div>
   );
 }
