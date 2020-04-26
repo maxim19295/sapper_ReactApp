@@ -1,3 +1,5 @@
+import { settingMinesAtField } from "../generalFunctions/settingMinesAtField";
+
 const CELL_OPENNING = 'CELL_OPENNING';
 const CELL_MARKING = 'CELL_MARKING'; 
 const SET_PARAMS_FOR_GAME = 'SET_PARAMS_FOR_GAME';
@@ -18,22 +20,15 @@ const gameReducer = (state=initState,action) =>{
         }
         case SET_PARAMS_FOR_GAME:{
             let arrayField = [];
-            let plantedMines = action.params.minesQuantity;
+            let minesArray = settingMinesAtField(action.params.minesQuantity,action.params.fieldSize.rows*action.params.fieldSize.columns);
+            let checkingNumber = 0;
             for(let i=0;i<action.params.fieldSize.rows;i++){
                 let arrayFieldTemp = [];
                 for(let j=0;j<action.params.fieldSize.columns;j++){
-                    let isMinned;
-                    if(plantedMines>0){
-                        if(Math.random()>=0.5)
-                        {
-                            isMinned=true;
-                            plantedMines--;
-                        }
-                        else isMinned=false;
-                    }
-                    else isMinned=false;
+                    let isMinned = minesArray.some((element=>element===checkingNumber)) ? true : false;
                     let cell = {closed: true, minned: isMinned}
                     arrayFieldTemp.push(cell);
+                    checkingNumber++;
                 }
                 arrayField.push(arrayFieldTemp);
             }

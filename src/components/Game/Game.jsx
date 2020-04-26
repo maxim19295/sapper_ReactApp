@@ -20,7 +20,7 @@ class Game extends React.Component{
                 ctx.beginPath();
                 ctx.lineWidth=3;
                 ctx.rect(j*cellSize,i*cellSize,cellSize,cellSize);
-                let color = this.props.currentGameParams.arrayField[i][j] ? closedCellColor : emptyCellColor;
+                let color = this.props.currentGameParams.arrayField[i][j].minned ? closedCellColor : emptyCellColor;
                 ctx.fillStyle= color;
                 ctx.fill();
                 ctx.strokeStyle='white';

@@ -46,9 +46,7 @@ export const editPlayerName = (name) =>({type: EDIT_PLAYER_NAME, name});
 export const editMinesQuantity = (quantity) =>({type: EDIT_MINES_QUANTITY, quantity});
 export const editQuantityRows = (number_rows) =>({type: EDIT_QUANTITY_ROWS, number_rows});
 export const editQuantityColumns = (number_columns) =>({type: EDIT_QUANTITY_COLUMNS, number_columns});
-export const editColorClosedCells = (color) =>{
-    debugger
-    return {type: EDIT_COLOR_CLOSED_CELLS, color}};
+export const editColorClosedCells = (color) =>({type: EDIT_COLOR_CLOSED_CELLS, color});
 export const editColorOpenCells = (color) =>({type: EDIT_COLOR_OPEN_CELLS,color});
 export const editMineImage = (image) =>({type: EDIT_MINE_IMAGE,image});
 export default gameSettingsReducer;
