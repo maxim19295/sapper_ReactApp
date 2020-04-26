@@ -1,0 +1,23 @@
+.historyBlock{
+    width: 600px;
+    border: 3px double rgb(255, 0, 0);
+    background-color: lightgray;
+    padding: 50px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.historyBlock table{
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+.historyBlock th{
+    padding: 10px;
+    border: 1px solid black;
+    background-color: gray;
+}
+.historyBlock td{
+    padding: 10px;
+    border: 1px solid gray;
+}
