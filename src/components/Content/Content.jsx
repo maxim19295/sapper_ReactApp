@@ -2,12 +2,16 @@ import React from 'react';
 import GameSettings from '../GameSettings/GameSettings';
 import Game from '../Game/Game';
 import History from '../History/History';
-import c from './Content.module.css';
-const Content = () =>{
-    return <>
-        <GameSettings/>
-        <Game/>
-        <History/>
-    </>
+import { connect } from 'react-redux';
+const Content = (props) =>{
+    switch(props.currentDialog){
+        case 'settings': return <GameSettings/>
+        case 'game': return <Game/>
+        case 'history': return <History/>
+        default: return null 
+    }
 }
-export default Content;
+let mapStateToProps = (state) =>({
+    ...state.dialog
+});
+export default connect(mapStateToProps)(Content);

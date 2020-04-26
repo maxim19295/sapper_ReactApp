@@ -1,20 +1,57 @@
-let arrayField = [];
-for(let i=0;i<20;i++){
-    let arr_temp = [];
-    for(let j=0;j<24;j++){
-        arr_temp.push(true);
-    }
-    arrayField.push(arr_temp);
-}
-arrayField[6][3]=false;
+const CELL_OPENNING = 'CELL_OPENNING';
+const CELL_MARKING = 'CELL_MARKING'; 
+const SET_PARAMS_FOR_GAME = 'SET_PARAMS_FOR_GAME';
 const initState = {
-        leftMinesQuantity: 17,
-        unblockedQuantity: 480,
-        arrayField,
+        leftMinesQuantity: null,
+        unblockedQuantity: null,
+        arrayField: [],
         score: 0,
         sparedTime: 0
 }
-const gameReducer = (state=initState) =>{
-    return state;
+const gameReducer = (state=initState,action) =>{
+    switch(action.type){
+        case CELL_OPENNING:{
+            return state;
+        }
+        case CELL_MARKING:{
+            return state;
+        }
+        case SET_PARAMS_FOR_GAME:{
+            let arrayField = [];
+            let plantedMines = action.params.minesQuantity;
+            for(let i=0;i<action.params.fieldSize.rows;i++){
+                let arrayFieldTemp = [];
+                for(let j=0;j<action.params.fieldSize.columns;j++){
+                    let isMinned;
+                    if(plantedMines>0){
+                        if(Math.random()>=0.5)
+                        {
+                            isMinned=true;
+                            plantedMines--;
+                        }
+                        else isMinned=false;
+                    }
+                    else isMinned=false;
+                    let cell = {closed: true, minned: isMinned}
+                    arrayFieldTemp.push(cell);
+                }
+                arrayField.push(arrayFieldTemp);
+            }
+            return {...state,
+                leftMinesQuantity: action.params.minesQuantity,
+                unblockedQuantity: action.params.fieldSize.rows*action.params.fieldSize.columns,
+                arrayField: [...arrayField]
+            };
+        }
+        default: return state;
+    }
 }
+export const openToCell = (cell) =>({type: CELL_OPENNING, ...cell});
+export const markToCell = (cell) =>({type: CELL_MARKING, ...cell});
+export const setParamsForGame = (params) =>(
+    {type: SET_PARAMS_FOR_GAME, 
+    params: {...params, 
+        fieldSize: {...params.fieldSize}
+            }
+    });
 export default gameReducer;

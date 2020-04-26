@@ -36,7 +36,7 @@ class Game extends React.Component{
         <canvas/>
         <div>
             <div>Left mines: <span>{this.props.currentGameParams.leftMinesQuantity}</span></div>
-            <div>Unblocked mines: <span>{this.props.currentGameParams.unblockedQuantity}</span></div>
+            <div>Closed cells: <span>{this.props.currentGameParams.unblockedQuantity}</span></div>
         </div>
         <div>
             <div>Score: <span>{this.props.currentGameParams.score}</span></div>
