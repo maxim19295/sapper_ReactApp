@@ -9,4 +9,5 @@ const reducers = combineReducers({
     history: historyReducer
 });
 const store = createStore(reducers);
+window.store=store;
 export default store;

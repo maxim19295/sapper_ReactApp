@@ -1,8 +1,15 @@
 import React from 'react';
 import h from './History.module.css';
-const History = () =>{
+import { connect } from 'react-redux';
+const History = (props) =>{
+    const LastGames = props.historyList.map(h=><tr>
+        <td>{h.number}</td>
+    <td>{h.playerName}</td>
+    <td>{h.score}</td>
+    <td>{`${h.fieldSize.rows} X ${h.fieldSize.columns}`}</td>
+    <td><span style={{color: h.result ? 'green' : 'red', fontWeight: 'bold', textTransform: 'uppercase'}}>{h.result ? 'win' : 'lose'}</span></td>
+    </tr>);
     return <div className={h.historyBlock}>
-        {/*table, include player name, score, fieldSize, result*/}
         <table>
             <tr>
                 <th>Number</th>
@@ -11,21 +18,11 @@ const History = () =>{
                 <th>fieldSize</th>
                 <th>Result</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Maxiksx</td>
-                <td>228</td>
-                <td>10 X 13</td>
-                <td><span style={{color: 'green', fontWeight: 'bold', textTransform: 'uppercase'}}>Win</span></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Andrey</td>
-                <td>227</td>
-                <td>20 X 13</td>
-                <td><span style={{color: 'red', fontWeight: 'bold', textTransform: 'uppercase'}}>lose</span></td>
-            </tr>
+            {
+            LastGames
+            }
         </table>
     </div>
 }
-export default History;
+let mapStateToProps = (state) =>({historyList: state.history.historyList});
+export default connect(mapStateToProps)(History);

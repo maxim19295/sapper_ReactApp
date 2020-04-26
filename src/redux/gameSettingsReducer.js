@@ -1,13 +1,13 @@
 const initState = {
-        playerName: '',
-        minesQuantity: '',
+        playerName: 'Player1',
+        minesQuantity: 17,
         fieldSize: {
-            rows: '',
-            columns: ''
+            rows: 20,
+            columns: 24
         },
-        colorClosedCells: 'blue',
-        colorOpenCells: 'lightskyblue',
-        mineImage: 'mine_image1.jpg'
+        colorClosedCells: 'red',
+        colorOpenCells: 'lightgreen',
+        mineImage: 'image1'
 }
 const gameSettingsReducer = (state=initState) =>{
     return state;

@@ -8,7 +8,7 @@ const initState = {
                 rows: 10,
                 columns: 13
             },
-            result: 'win'
+            result: true
         },
         {
             number: 2, 
@@ -18,7 +18,7 @@ const initState = {
                 rows: 20,
                 columns: 13
             },
-            result: 'lose'
+            result: false
         }
     ]
 }

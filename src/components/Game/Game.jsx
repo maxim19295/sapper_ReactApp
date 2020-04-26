@@ -1,20 +1,13 @@
 import React from 'react';
 import g from './Game.module.css';
+import { connect } from 'react-redux';
 class Game extends React.Component{
     componentDidMount(){
-        let rows=20;
-        let columns=20;
-        let arr = [];
-        for(let i=0; i<rows; i++){
-            let arr_temp = [];
-            for(let j=0;j<columns;j++){
-                arr_temp.push(true);
-            }
-            arr.push(arr_temp);
-        }
-        let cellSize=30;
-        let closedCellColor = 'blue';
-        let emptyCellColor = 'lightskyblue';
+        let rows=this.props.gameSettings.fieldSize.rows;
+        let columns=this.props.gameSettings.fieldSize.columns;
+        let cellSize=25;
+        let closedCellColor = this.props.gameSettings.colorClosedCells;
+        let emptyCellColor = this.props.gameSettings.colorOpenCells;
         let canvas = document.querySelector('canvas');
         let widthCanvas=columns*cellSize;
         let heightCanvas=rows*cellSize;
@@ -27,7 +20,7 @@ class Game extends React.Component{
                 ctx.beginPath();
                 ctx.lineWidth=3;
                 ctx.rect(j*cellSize,i*cellSize,cellSize,cellSize);
-                let color = arr[i][j] ? closedCellColor : emptyCellColor;
+                let color = this.props.currentGameParams.arrayField[i][j] ? closedCellColor : emptyCellColor;
                 ctx.fillStyle= color;
                 ctx.fill();
                 ctx.strokeStyle='white';
@@ -42,13 +35,19 @@ class Game extends React.Component{
     render(){return <div className={g.gameBlock}>
         <canvas/>
         <div>
-            <div>Left mines: <span>16</span></div>
-            <div>Unblocked mines: <span>148</span></div>
+            <div>Left mines: <span>{this.props.currentGameParams.leftMinesQuantity}</span></div>
+            <div>Unblocked mines: <span>{this.props.currentGameParams.unblockedQuantity}</span></div>
         </div>
         <div>
-            <div>Score: <span>228</span></div>
-            <div>Time of playing: <span>0:48</span></div>
+            <div>Score: <span>{this.props.currentGameParams.score}</span></div>
+<div>Time of playing: <span>{this.props.currentGameParams.sparedTime}</span></div>
         </div>
     </div>}
 }
-export default Game;
+let mapStateToProps = (state) =>{
+    return {
+        gameSettings: state.gameSettings,
+        currentGameParams: state.game
+    }
+}
+export default connect(mapStateToProps)(Game);
