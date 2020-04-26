@@ -11,16 +11,16 @@ const GameSettings = () =>{
         <label>Quantity columns</label><input type='number' min={10} max={50}/></div>
         <div><label>Color of closed cells</label>
             <span className={gs.chooseParam}>
-            <input id='darkblue' type='radio' name='colorClosedMine' value="darkblue"/><label htmlFor='darkblue'><div style={{width: 40, height: 40, backgroundColor: 'darkblue', display: 'inline-block'}}></div></label>
-            <input id='red' type='radio' name='colorClosedMine' value='red'/><label htmlFor='red'><div style={{width: 40, height: 40, backgroundColor: 'red', display: 'inline-block'}}></div></label>
-            <input id='green' type='radio' name='colorClosedMine' value='green'/><label htmlFor='green'><div style={{width: 40, height: 40, backgroundColor: 'green', display: 'inline-block'}}></div></label>
+            <input id='darkblue' type='radio' name='colorClosedCell' value="darkblue"/><label htmlFor='darkblue'><div style={{width: 40, height: 40, backgroundColor: 'darkblue', display: 'inline-block'}}></div></label>
+            <input id='red' type='radio' name='colorClosedCell' value='red'/><label htmlFor='red'><div style={{width: 40, height: 40, backgroundColor: 'red', display: 'inline-block'}}></div></label>
+            <input id='green' type='radio' name='colorClosedCell' value='green'/><label htmlFor='green'><div style={{width: 40, height: 40, backgroundColor: 'green', display: 'inline-block'}}></div></label>
             </span>
         </div>
         <div><label>Color of empty cells</label>
         <span className={gs.chooseParam}>
-            <input id='blue' type='radio' name='colorEmptyMine' value="blue"/><label htmlFor='blue'><div style={{width: 40, height: 40, backgroundColor: 'blue', display: 'inline-block'}}></div></label>
-            <input id='pink' type='radio' name='colorEmptyMine' value='pink'/><label htmlFor='pink'><div style={{width: 40, height: 40, backgroundColor: 'pink', display: 'inline-block'}}></div></label>
-            <input id='lightgreen' type='radio' name='colorEmptyMine' value='lightgreen'/><label htmlFor='lightgreen'><div style={{width: 40, height: 40, backgroundColor: 'lightgreen', display: 'inline-block'}}></div></label>
+            <input id='lightblue' type='radio' name='colorOpenCell' value="blue"/><label htmlFor='lightblue'><div style={{width: 40, height: 40, backgroundColor: 'lightblue', display: 'inline-block'}}></div></label>
+            <input id='pink' type='radio' name='colorOpenCell' value='pink'/><label htmlFor='pink'><div style={{width: 40, height: 40, backgroundColor: 'pink', display: 'inline-block'}}></div></label>
+            <input id='lightgreen' type='radio' name='colorOpenCell' value='lightgreen'/><label htmlFor='lightgreen'><div style={{width: 40, height: 40, backgroundColor: 'lightgreen', display: 'inline-block'}}></div></label>
         </span>
         </div>
         <div><label>Mine image</label>
