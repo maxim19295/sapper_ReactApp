@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { editPlayerName, editMinesQuantity, editQuantityRows, editQuantityColumns, editColorClosedCells, editColorOpenCells, editMineImage } from '../../redux/gameSettingsReducer';
 import { setParamsForGame } from '../../redux/gameReducer';
 import { changeDialog } from '../../redux/dialogReducer';
+import { startOrStopRecordGame } from '../../redux/historyReducer';
 const GameSettings = (props) =>{
     return <div className={gs.mainBlock}>
         <div><label>Name of player</label><input type='text' value={props.playerName}
@@ -59,17 +60,18 @@ const GameSettings = (props) =>{
         </div>
         <div><label>Mine image</label>
             <span className={gs.chooseParam}>
-                <input id='image1' type='radio' name='mine_image' value="image1" checked={props.mineImage==='image1' ? true : false} onChange={(e)=>{props.editMineImage(e.target.value)}}/>
+                <input id='image1' type='radio' name='mine_image' value="image1" checked={props.mineImage.title==='image1' ? true : false} onChange={(e)=>{props.editMineImage({title: e.target.value, fileName: 'mine_image1.jpg'})}}/>
                 <label htmlFor='image1'><img src={mine_image1} width={40} alt='image1'/></label>
-                <input id='image2' type='radio' name='mine_image' value='image2' checked={props.mineImage==='image2' ? true : false} onChange={(e)=>{props.editMineImage(e.target.value)}}/>
+                <input id='image2' type='radio' name='mine_image' value='image2' checked={props.mineImage.title==='image2' ? true : false} onChange={(e)=>{props.editMineImage({title: e.target.value, fileName: 'mine_image2.png'})}}/>
                 <label htmlFor='image2'><img src={mine_image2} width={40} alt='image2'/></label>
-                <input id='image3' type='radio' name='mine_image' value='image3' checked={props.mineImage==='image3' ? true : false} onChange={(e)=>{props.editMineImage(e.target.value)}}/>
+                <input id='image3' type='radio' name='mine_image' value='image3' checked={props.mineImage.title==='image3' ? true : false} onChange={(e)=>{props.editMineImage({title: e.target.value, fileName: 'mine_image3.png'})}}/>
                 <label htmlFor='image3'><img src={mine_image3} width={40} alt='image3'/></label>
             </span>
         </div>
         <button onClick={()=>{
             props.setParamsForGame({minesQuantity: props.minesQuantity, fieldSize: {...props.fieldSize}});
             props.changeDialog('game');
+            props.startOrStopRecordGame();
             }}>Save it and go play</button>
     </div>
 }
@@ -87,6 +89,7 @@ let mapDispatchToProps = {
     editColorOpenCells,
     editMineImage,
     setParamsForGame,
-    changeDialog
+    changeDialog,
+    startOrStopRecordGame
 }
 export default connect(mapStateToProps,mapDispatchToProps)(GameSettings);

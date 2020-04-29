@@ -7,14 +7,14 @@ const EDIT_COLOR_OPEN_CELLS='EDIT_COLOR_OPEN_CELLS';
 const EDIT_MINE_IMAGE='EDIT_MINE_IMAGE';
 const initState = {
         playerName: 'Player1',
-        minesQuantity: 17,
+        minesQuantity: 21,
         fieldSize: {
-            rows: 20,
-            columns: 24
+            rows: 10,
+            columns: 10
         },
         colorClosedCells: 'red',
         colorOpenCells: 'lightgreen',
-        mineImage: 'image1'
+        mineImage: {title: 'image1', fileName: 'mine_image1.jpg'}
 }
 const gameSettingsReducer = (state=initState,action) =>{
     switch(action.type){
@@ -37,7 +37,7 @@ const gameSettingsReducer = (state=initState,action) =>{
             return {...state, colorOpenCells: action.color};
         }
         case EDIT_MINE_IMAGE:{
-            return {...state, mineImage: action.image};
+            return {...state, mineImage: {...action.image, title: action.image.title, path: action.image.path}};
         }
         default: return state;
     }
